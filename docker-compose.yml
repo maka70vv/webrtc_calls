@@ -7,7 +7,7 @@ services:
     volumes:
       - ./:/usr/src/chat/
     ports:
-      - "8001:8000"
+      - "8080:8000"
 
   redis:
     image: redis:6.2.5-alpine3.14
