@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - ./:/usr/src/chat/
+    ports:
+      - "8001:8000"
+
+  redis:
+    image: redis:6.2.5-alpine3.14
+    ports:
+      - "6399:6379"
+    volumes:
+      - redis_data:/data
+    command: redis-server --appendonly yes
+    depends_on:
+      - web
+
+
+volumes:
+  redis_data:
